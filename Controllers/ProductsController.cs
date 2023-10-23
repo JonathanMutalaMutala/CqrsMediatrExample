@@ -20,15 +20,21 @@ namespace CqrsMediatrExample.Controllers
             var products = await _sender.Send(new GetProductsQuery()); // Faire appel Au Query pour le MediatR
             return Ok(products);
         }
+        [HttpGet("{id:int}",Name = "GetProductById")]
+        public async Task<ActionResult> GetProductById(int id)
+        {
+            var product = await _sender.Send(new GetProductByIdQuery(id));
+            return Ok(product);
+        } 
 
 
         [HttpPost]
         public async Task<IActionResult> AddProduct([FromBody] Product product)
         {
             var addProductCommand = new AddProductCommand { Product = product };
-            await _sender.Send(addProductCommand);
+           var productToReturn = await _sender.Send(addProductCommand);
 
-            return StatusCode(200);
+            return  CreatedAtRoute("GetProductById",new { id = productToReturn.Id },productToReturn);
 
         }
     }
