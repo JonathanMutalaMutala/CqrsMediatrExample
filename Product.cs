@@ -25,10 +25,10 @@
         /// </summary>
         /// <param name="product"></param>
         /// <returns></returns>
-        public async Task AddProduct(Product product)
+        public async Task<Product> AddProduct(Product product)
         {
             _products.Add(product);
-            await Task.CompletedTask;
+            return product; //await Task.FromResult(product);
         }
 
         /// <summary>
