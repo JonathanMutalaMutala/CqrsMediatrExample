@@ -11,7 +11,8 @@
             {
                 new Product { Id = 1,Name = "Produit 1"},
                 new Product { Id = 2,Name = "Produit 2"},
-                new Product { Id = 3,Name= "Produit 3"}
+                new Product { Id = 3,Name= "Produit 3"},
+                new Product {Id= 4,Name="Produit 4"}
             };
         }
 
